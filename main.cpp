@@ -68,21 +68,29 @@ int soma (const Retangulo&_ret){
     soma= (1*Intercep(_ret.PTR(), sala) + 2*(Intercep(PontosRetNO(_ret), sala)) + 
                 4*(Intercep(PontosRetNE(_ret), sala)) + 8*(Intercep (PontosRetSE(_ret), sala)));
  
-        
+    if (soma==0)
+    {
         if ((sala.PTR().Y() < _ret.PTR().Y() && _ret.PTR().Y() < PontosRetNO(sala).Y()) && //tapete transversal horizontal
-                (sala.PTR().X() > _ret.PTR().X() && PontosRetSE(_ret).X() > PontosRetSE(sala).X())) {
-            
-            return soma=17;
+                (sala.PTR().X() > _ret.PTR().X() && PontosRetSE(_ret).X() > PontosRetSE(sala).X()))
+        {
+            soma=17;
         }
-        
+            else if ((_ret.PTR().Y() < sala.PTR().Y() && sala.PTR().Y() < PontosRetNO(_ret).Y()) && //tapete transversal horizontal
+                (_ret.PTR().X() > sala.PTR().X() && PontosRetSE(sala).X() > PontosRetSE(_ret).X()))
+            {
+                soma=17;
+            }
+                else if ((1*Intercep(sala.PTR(), _ret) + 2*(Intercep(PontosRetNO(sala), _ret)) + 
+                      4*(Intercep(PontosRetNE(sala), _ret)) + 8*(Intercep (PontosRetSE(sala), _ret))) == 15)
+                {
+                    soma=16;
+                }
+                    else
+                    {
+                        soma=18;
+                    }
+    }
     
-        if ((sala.PTR().Y() > _ret.PTR().Y() && _ret.PTR().Y() > PontosRetNO(sala).Y()) && //tapete transversal vertical
-                (sala.PTR().X() < _ret.PTR().X() && PontosRetSE(_ret).X() < PontosRetSE(sala).X())) {
-            
-            return soma=17;
-        }
-        
-        
-        else return soma;
+        return soma;
     }   
 //    A soma diz respeito AO TAPETE, não à sala
